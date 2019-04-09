@@ -6,11 +6,11 @@
 # Calculadora Financeira
 
 Aplicativo para realizar cálculos de financiamentos usando as tabelas de amortização SAC e Price para a disciplina
-de Matemática financeira no curso de Sistemas de Informação. 
+de Matemática Financeira no curso de Sistemas de Informação. 
 
 ## Desenvolvido com
 
-* Java COM FORÇA
+* Java
 
 ## Colaboradores
 

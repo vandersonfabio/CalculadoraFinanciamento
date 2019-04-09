@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:background="#fcfcfcfc">
+
+    <LinearLayout
+        android:layout_width="368dp"
+        android:layout_height="495dp"
+        android:orientation="vertical"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="8dp"
+        android:padding="5dp">
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="match_parent"
+            android:layout_height="132dp"
+            android:padding="30dp"
+            app:srcCompat="@drawable/logo_screen" />
+
+        <EditText
+            android:id="@+id/etValorFinanciamento"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Valor do financiamento"
+            android:inputType="numberDecimal"
+            android:drawableLeft="@drawable/ic_monetization_on_black_12dp"
+            android:drawablePadding="3dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/etTaxaJuros"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Taxa de juros (%)"
+                android:inputType="numberDecimal"
+                android:drawableLeft="@drawable/ic_show_chart_black_12dp"
+                android:drawablePadding="3dp"/>
+
+            <RadioGroup
+                android:id="@+id/rgPeriodo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_gravity="center">
+
+                <RadioButton
+                    android:id="@+id/rbMensal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="a.m."
+                    android:checked="true"/>
+
+                <RadioButton
+                    android:id="@+id/rbAnual"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="a.a." />
+            </RadioGroup>
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/etTempo"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Nº de prestações"
+            android:inputType="number"
+            android:drawableLeft="@drawable/ic_date_range_black_12dp"
+            android:drawablePadding="3dp"/>
+
+        <TextView
+            android:id="@+id/tvSistemaAmortizacao"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Sistema de amortização:"
+            android:layout_marginLeft="5dp"/>
+
+        <Spinner
+            android:id="@+id/spinnerAmortizacao"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/btCalcularPrestacoes"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Calcular valor das prestações"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="25dp"
+                android:background="#34D391"
+                android:textColor="#FFFFFFFF"
+                />
+        </LinearLayout>
+    </LinearLayout>
+
+</android.support.constraint.ConstraintLayout>

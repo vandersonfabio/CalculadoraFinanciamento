@@ -1,13 +1,10 @@
 package com.vandersonfabio.calculadorafinanciamento;
 
-import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.pm.ActivityInfo;
-import android.os.AsyncTask;
-import android.support.annotation.DrawableRes;
+import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
@@ -56,12 +53,12 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
     public void configurarBotoes(){
 
-        botaoCalcular = (Button) findViewById(R.id.btCalcularPrestacoes);
-        txtValorFinanciamento = (EditText) findViewById(R.id.etValorFinanciamento);
-        txtTaxaJuros = (EditText) findViewById(R.id.etTaxaJuros);
-        txtTempo = (EditText) findViewById(R.id.etTempo);
-        spinnerTabela = (Spinner) findViewById(R.id.spinnerAmortizacao);
-        rgGrupoPeriodo = (RadioGroup) findViewById(R.id.rgPeriodo);
+        botaoCalcular = findViewById(R.id.btCalcularPrestacoes);
+        txtValorFinanciamento = findViewById(R.id.etValorFinanciamento);
+        txtTaxaJuros = findViewById(R.id.etTaxaJuros);
+        txtTempo = findViewById(R.id.etTempo);
+        spinnerTabela = findViewById(R.id.spinnerAmortizacao);
+        rgGrupoPeriodo = findViewById(R.id.rgPeriodo);
 
         spinnerTabela.setOnItemSelectedListener(this);
         carregarDadosSpinner();
@@ -69,7 +66,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         //MODIFICAR VALORES EM TEMPO DE EXECUÇÃO
         txtValorFinanciamento.addTextChangedListener(new TextWatcher() {
 
-            protected String current = "";
+            private String current = "";
 
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -84,7 +81,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
                     txtValorFinanciamento.removeTextChangedListener(this);
 
-                    String cleanString = s.toString().replaceAll("[R,$,.]", "");
+                    String cleanString = s.toString().replaceAll(getString(R.string.charMoeda), "");
                     double parsed = Double.parseDouble(cleanString);
                     String formattedString = NumberFormat.getCurrencyInstance().format((parsed/100));
 
@@ -92,7 +89,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
                     txtValorFinanciamento.setText(formattedString);
                     txtValorFinanciamento.setSelection(formattedString.length());
-
                     txtValorFinanciamento.addTextChangedListener(this);
                 }
             }
@@ -113,19 +109,19 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
                 if (txtValorFinanciamento.getText().toString().equals("")) {
                     countError++;
-                    errorDescription = "Valor do financiamento ausente. Por favor, insira um valor válido.";
+                    errorDescription = getString(R.string.erroFinanciamentoAusente);
                 } else if (txtValorFinanciamento.getText().toString().equals("R$0,00")) {
                     countError++;
-                    errorDescription = "Valor do financiamento não pode ser R$ 0,00. Por favor, insira um valor válido.";
+                    errorDescription = getString(R.string.erroFinanciamentoZero);
                 } else if (txtTaxaJuros.getText().toString().equals("")) {
                     countError++;
-                    errorDescription = "Taxa de juros ausente. Por favor, insira um valor válido.";
+                    errorDescription = getString(R.string.erroTaxaAusente);
                 } else if (txtTempo.getText().toString().equals("")) {
                     countError++;
-                    errorDescription = "Nº de prestações ausente. Por favor, insira um valor válido.";
+                    errorDescription = getString(R.string.erroPrestacaoAusente);
                 } else if (txtTempo.getText().toString().equals("0")) {
                     countError++;
-                    errorDescription = "Nº de prestações não pode ser 0. Por favor, insira um valor válido.";
+                    errorDescription = getString(R.string.erroPrestacaoZero);
                 }
 
 
@@ -134,7 +130,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                     alertaErrors.setTitle("Atenção!")
                             .setIcon(R.drawable.ic_warning_orange_24dp)
                             .setMessage(errorDescription)
-                            .setPositiveButton("Voltar e corrigir", null)
+                            .setPositiveButton(getString(R.string.voltarECorrigir), null)
                             .create()
                             .show();
                 } else {
@@ -146,14 +142,14 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
     public void realizarCalculo(){
 
-        //Intanciando os alertas
+        //Instanciando os alertas
         final AlertDialog.Builder alertaParcelas = new AlertDialog.Builder(MainActivity.this);
         final AlertDialog.Builder alertaIndividual = new AlertDialog.Builder(MainActivity.this);
 
         //Pegando os valores das variáveis
         int rbSelecionado = rgGrupoPeriodo.getCheckedRadioButtonId();
-        rbPeriodoJuros = (RadioButton) findViewById(rbSelecionado);
-        capital = Double.parseDouble(txtValorFinanciamento.getText().toString().replaceAll("[R,$,.]", "")) / 100;
+        rbPeriodoJuros = findViewById(rbSelecionado);
+        capital = Double.parseDouble(txtValorFinanciamento.getText().toString().replaceAll(getString(R.string.charMoeda), "")) / 100;
         taxa = Double.parseDouble(txtTaxaJuros.getText().toString()) / 100;
         tempo = Integer.parseInt(txtTempo.getText().toString());
 
@@ -185,7 +181,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             @Override
             public void onClick(DialogInterface dialog, int which) {
 
-                final Parcela parcelaSelecionada = (Parcela) listaParcelas.get(which);
+                final Parcela parcelaSelecionada = listaParcelas.get(which);
 
                 DecimalFormat df = new DecimalFormat("###,##0.00");
 
@@ -207,13 +203,19 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         String outraTabela = getOutraTabelaAmortizacao();
 
         alertaParcelas
-                .setNegativeButton("Voltar", null)
+                .setNegativeButton("Voltar", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        carregarDadosSpinner();
+                    }
+                })
                 .setPositiveButton("Mudar para " + outraTabela, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         mudarTabelaAmortizacao();
                     }
                 })
+                .setCancelable(false)
                 .create()
                 .show();
     }

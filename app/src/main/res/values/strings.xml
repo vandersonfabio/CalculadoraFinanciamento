@@ -5,4 +5,16 @@
         <item>Tabela SAC - Parcelas descrescentes</item>
         <item>Tabela Price - Parcelas fixas</item>
     </string-array>
+
+    <string name="erroFinanciamentoAusente">Valor do financiamento ausente. Por favor, insira um valor válido.</string>
+    <string name="erroTaxaAusente">Taxa de juros ausente. Por favor, insira um valor válido.</string>
+    <string name="erroPrestacaoAusente">Nº de prestações ausente. Por favor, insira um valor válido.</string>
+
+    <string name="erroFinanciamentoZero">Valor do financiamento não pode ser R$ 0,00. Por favor, insira um valor válido.</string>
+    <string name="erroPrestacaoZero">Nº de prestações não pode ser 0. Por favor, insira um valor válido.</string>
+
+    <string name="voltarECorrigir">Voltar e corrigir</string>
+    <string name="charMoeda">[R,$.]</string>
+
+
 </resources>

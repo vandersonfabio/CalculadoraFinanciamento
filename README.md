@@ -6,14 +6,14 @@
 <img src="img/calc4.jpeg" width="550">
 -->
 
-# Calculadora Financeira
+# Minha Prestação
 
 Aplicativo para realizar cálculos de financiamentos usando as tabelas de amortização SAC e Price para a disciplina
-de Matemática Financeira no curso de Sistemas de Informação. 
+**Matemática Financeira** no curso Sistemas de Informação/UFRN.
 
 ## Desenvolvido com
 
-* Java
+* Java + Android Studio
 
 ## Colaboradores
 

@@ -1,8 +1,10 @@
 <img src="img/giphy.gif" width="550">
+<!-- 
 <img src="img/calc1.jpeg" width="550">
 <img src="img/calc2.jpeg" width="550">
 <img src="img/calc3.jpeg" width="550">
 <img src="img/calc4.jpeg" width="550">
+-->
 
 # Calculadora Financeira
 

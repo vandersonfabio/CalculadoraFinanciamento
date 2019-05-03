@@ -162,6 +162,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
         Parcela parcela = new Parcela();
 
+        DecimalFormat df = new DecimalFormat("###,##0.00");
 
         final ArrayList<Parcela> listaParcelas =
                 tipoAmortizacao.equals("SAC") ?
@@ -171,9 +172,12 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         //Adaptador para o ListView das parcelas
         ParcelaAdapter adapterParcela = new ParcelaAdapter(getBaseContext(), R.layout.linha_parcela, listaParcelas);
 
+        Parcela ultima = listaParcelas.get(listaParcelas.size()-1);
+
         //Criando o alerta de listagem de parcelas
         alertaParcelas
-                .setTitle("Tabela selecionada: " + tipoAmortizacao)
+                .setTitle("Tabela selecionada: " + tipoAmortizacao + "\n" +
+                        "Valor total: R$ "+df.format(ultima.getSomatorio()))
                 .setIcon(R.drawable.ic_attach_money_black_24dp);
 
         //Setando o clique sobre cada parcela do ListView

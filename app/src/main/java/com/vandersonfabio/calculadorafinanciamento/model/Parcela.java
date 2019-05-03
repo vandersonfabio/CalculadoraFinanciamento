@@ -9,7 +9,7 @@ public class Parcela {
     private double juros;
     private double amortizacao;
     private double saldoDevedor;
-
+    private double somatorio;
 
     public int getNumero() {
         return numero;
@@ -18,7 +18,6 @@ public class Parcela {
     public void setNumero(int numero) {
         this.numero = numero;
     }
-
 
     public double getPrestacao() {
         return prestacao;
@@ -52,6 +51,14 @@ public class Parcela {
         this.saldoDevedor = saldoDevedor;
     }
 
+    public double getSomatorio() {
+        return somatorio;
+    }
+
+    public void setSomatorio(double somatorio) {
+        this.somatorio = somatorio;
+    }
+
     public ArrayList<Parcela> getParcelasSAC(double capital, double taxa, int tempo){
 
         ArrayList<Parcela> parcelas = new ArrayList<>();
@@ -60,6 +67,7 @@ public class Parcela {
         double juros = 0.0;
         double amortizacao = 0.0;
         double saldoDevedor = capital;
+        double somatorio = 0.0;
 
         Parcela p0 = new Parcela();
         p0.setNumero(0);
@@ -67,6 +75,7 @@ public class Parcela {
         p0.setJuros(juros);
         p0.setAmortizacao(amortizacao);
         p0.setSaldoDevedor(saldoDevedor);
+        p0.setSomatorio(somatorio);
         parcelas.add(p0);
 
         //AS AMORTIZAÇÕES SÃO FIXAS
@@ -77,12 +86,14 @@ public class Parcela {
             juros = taxa*saldoDevedor;
             prestacao = amortizacao + juros;
             saldoDevedor = saldoDevedor - amortizacao;
+            somatorio += prestacao;
 
             p.setNumero(i);
             p.setPrestacao(prestacao);
             p.setJuros(juros);
             p.setAmortizacao(amortizacao);
             p.setSaldoDevedor(saldoDevedor);
+            p.setSomatorio(somatorio);
 
             parcelas.add(p);
         }
@@ -98,6 +109,7 @@ public class Parcela {
         double juros = 0.0;
         double amortizacao = 0.0;
         double saldoDevedor = capital;
+        double somatorio = 0.0;
 
         Parcela p0 = new Parcela();
         p0.setNumero(0);
@@ -105,6 +117,7 @@ public class Parcela {
         p0.setJuros(juros);
         p0.setAmortizacao(amortizacao);
         p0.setSaldoDevedor(saldoDevedor);
+        p0.setSomatorio(somatorio);
         parcelas.add(p0);
 
         //AS PRESTAÇÕES SÃO FIXAS
@@ -114,12 +127,14 @@ public class Parcela {
             juros = taxa*saldoDevedor;
             amortizacao = prestacao - juros;
             saldoDevedor = saldoDevedor - amortizacao;
+            somatorio += prestacao;
 
             p.setNumero(i);
             p.setPrestacao(prestacao);
             p.setJuros(juros);
             p.setAmortizacao(amortizacao);
             p.setSaldoDevedor(saldoDevedor);
+            p.setSomatorio(somatorio);
 
             parcelas.add(p);
         }

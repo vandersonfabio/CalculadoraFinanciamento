@@ -37,11 +37,10 @@ public class ParcelaAdapter extends ArrayAdapter<Parcela> {
 
         Parcela parcela = items.get(position);
 
+        DecimalFormat df = new DecimalFormat("###,##0.00");
 
         if(parcela != null){
             ((TextView) view.findViewById(R.id.tvNumero)).setText(Integer.toString(parcela.getNumero()));
-
-            DecimalFormat df = new DecimalFormat("###,##0.00");
 
             ((TextView) view.findViewById(R.id.tvPrestacao)).setText("R$ "+ df.format(parcela.getPrestacao()));
             ((TextView) view.findViewById(R.id.tvSaldoDevedor)).setText("R$ "+ df.format(parcela.getSaldoDevedor()));

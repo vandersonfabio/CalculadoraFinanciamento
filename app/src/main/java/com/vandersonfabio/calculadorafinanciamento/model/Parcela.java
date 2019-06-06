@@ -88,6 +88,10 @@ public class Parcela {
             saldoDevedor = saldoDevedor - amortizacao;
             somatorio += prestacao;
 
+            if(saldoDevedor < 0.0) {
+                saldoDevedor *= -1;
+            }
+
             p.setNumero(i);
             p.setPrestacao(prestacao);
             p.setJuros(juros);
@@ -97,7 +101,6 @@ public class Parcela {
 
             parcelas.add(p);
         }
-
         return parcelas;
     }
 
@@ -121,12 +124,17 @@ public class Parcela {
         parcelas.add(p0);
 
         //AS PRESTAÇÕES SÃO FIXAS
-        prestacao = prestacao = capital*taxa/(1-Math.pow(1+taxa,(-tempo)));
+        prestacao = capital*taxa/(1-Math.pow(1+taxa,(-tempo)));
         for(int i = 1; i <= tempo; i++){
             Parcela p = new Parcela();
             juros = taxa*saldoDevedor;
             amortizacao = prestacao - juros;
             saldoDevedor = saldoDevedor - amortizacao;
+
+            if(saldoDevedor < 0.0) {
+                saldoDevedor *= -1;
+            }
+
             somatorio += prestacao;
 
             p.setNumero(i);

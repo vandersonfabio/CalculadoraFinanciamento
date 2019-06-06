@@ -2,7 +2,7 @@
     <string name="app_name">Minha Prestação</string>
 
     <string-array name="tabelas">
-        <item>Tabela SAC - Parcelas descrescentes</item>
+        <item>Tabela SAC - Parcelas decrescentes</item>
         <item>Tabela Price - Parcelas fixas</item>
     </string-array>
 
@@ -15,7 +15,7 @@
 
     <string name="voltarECorrigir">Voltar e corrigir</string>
     <string name="charMoeda">[R,$.]</string>
-    <string name="devs">Isaac José | Joaquim Heitor | Vanderson Fábio</string>
+    <string name="devs">Isaac José | Vanderson Fábio</string>
     <string name="developed_by">Developed by:</string>
 
 

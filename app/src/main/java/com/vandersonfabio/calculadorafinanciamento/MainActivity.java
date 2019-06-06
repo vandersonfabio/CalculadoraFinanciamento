@@ -176,8 +176,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
         //Criando o alerta de listagem de parcelas
         alertaParcelas
-                .setTitle("Tabela selecionada: " + tipoAmortizacao + "\n" +
-                        "Valor total: R$ "+df.format(ultima.getSomatorio()))
+                .setTitle("Tabela selecionada - " + tipoAmortizacao.toUpperCase() + "\n" +
+                        "Montante: R$ " + df.format(ultima.getSomatorio()))
                 .setIcon(R.drawable.ic_attach_money_black_24dp);
 
         //Setando o clique sobre cada parcela do ListView
@@ -194,7 +194,9 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                         "Prestação: R$ " + df.format(parcelaSelecionada.getPrestacao()) +
                         "\nAmortização: R$ " + df.format(parcelaSelecionada.getAmortizacao()) +
                         "\nJuros: R$ " + df.format(parcelaSelecionada.getJuros()) +
-                        "\nSaldo Devedor: R$ " + df.format(parcelaSelecionada.getSaldoDevedor())
+                        "\nSaldo Devedor: R$ " + df.format(parcelaSelecionada.getSaldoDevedor()) +
+                        "\n"+
+                        "\nMontante pago: R$ " + df.format(parcelaSelecionada.getSomatorio())
                 );
                 alertaIndividual
                         .setPositiveButton("Voltar", null)
@@ -239,7 +241,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
-        if(spinnerTabela.getItemAtPosition(position).toString().equals("Tabela SAC - Parcelas descrescentes")){
+        if(spinnerTabela.getItemAtPosition(position).toString().equals("Tabela SAC - Parcelas decrescentes")){
             tipoAmortizacao = "SAC";
         }
         else{

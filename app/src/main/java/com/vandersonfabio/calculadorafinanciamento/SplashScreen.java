@@ -9,7 +9,7 @@ import android.view.Window;
 public class SplashScreen extends AppCompatActivity {
 
     //TIMER DA TELA SPLASH
-    private static int SPLASH_TIME_OUT = 4000;
+    private static int SPLASH_TIME_OUT = 2*1000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

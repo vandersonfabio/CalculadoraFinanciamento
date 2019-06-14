@@ -1,6 +1,7 @@
 package com.vandersonfabio.calculadorafinanciamento;
 
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -15,7 +16,8 @@ public class SplashScreen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        //this.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        //DEFINIR A ORIENTAÇÃO RETRATO
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         setContentView(R.layout.activity_splash_screen);
 
@@ -25,7 +27,7 @@ public class SplashScreen extends AppCompatActivity {
              */
             @Override
             public void run() {
-                // Esse método será executado sempre que o timer acabar
+                // Esse método será executado sempre que o SPLASH_TIME_OUT acabar
                 // E inicia a activity principal
                 Intent i = new Intent(SplashScreen.this, MainActivity.class);
                 startActivity(i);

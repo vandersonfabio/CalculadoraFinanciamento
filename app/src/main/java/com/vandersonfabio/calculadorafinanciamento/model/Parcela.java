@@ -61,14 +61,17 @@ public class Parcela {
 
     public ArrayList<Parcela> getParcelasSAC(double capital, double taxa, int tempo){
 
-        ArrayList<Parcela> parcelas = new ArrayList<>();
+        //Lista que irá armazezar todas as parcelas
+        ArrayList<Parcela> listaParcelas = new ArrayList<>();
 
+        //Atributos adicionais da PARCELA
         double prestacao = 0.0;
         double juros = 0.0;
         double amortizacao = 0.0;
         double saldoDevedor = capital;
         double somatorio = 0.0;
 
+        //Parcela auxiliar para capturar os dados iniciais
         Parcela p0 = new Parcela();
         p0.setNumero(0);
         p0.setPrestacao(prestacao);
@@ -76,44 +79,47 @@ public class Parcela {
         p0.setAmortizacao(amortizacao);
         p0.setSaldoDevedor(saldoDevedor);
         p0.setSomatorio(somatorio);
-        parcelas.add(p0);
+        listaParcelas.add(p0);
 
         //AS AMORTIZAÇÕES SÃO FIXAS
         amortizacao = capital/tempo;
         for(int i = 1; i <= tempo; i++){
-            Parcela p = new Parcela();
+            Parcela parcela = new Parcela();
 
             juros = taxa*saldoDevedor;
             prestacao = amortizacao + juros;
-            saldoDevedor = saldoDevedor - amortizacao;
+            saldoDevedor -= amortizacao;
             somatorio += prestacao;
 
             if(saldoDevedor < 0.0) {
                 saldoDevedor *= -1;
             }
 
-            p.setNumero(i);
-            p.setPrestacao(prestacao);
-            p.setJuros(juros);
-            p.setAmortizacao(amortizacao);
-            p.setSaldoDevedor(saldoDevedor);
-            p.setSomatorio(somatorio);
+            parcela.setNumero(i);
+            parcela.setPrestacao(prestacao);
+            parcela.setJuros(juros);
+            parcela.setAmortizacao(amortizacao);
+            parcela.setSaldoDevedor(saldoDevedor);
+            parcela.setSomatorio(somatorio);
 
-            parcelas.add(p);
+            listaParcelas.add(parcela);
         }
-        return parcelas;
+        return listaParcelas;
     }
 
     public ArrayList<Parcela> getParcelasPrice(double capital, double taxa, int tempo){
 
-        ArrayList<Parcela> parcelas = new ArrayList<>();
+        //Lista que irá armazezar todas as parcelas
+        ArrayList<Parcela> listaParcelas = new ArrayList<>();
 
+        //Atributos adicionais da PARCELA
         double prestacao = 0.0;
         double juros = 0.0;
         double amortizacao = 0.0;
         double saldoDevedor = capital;
         double somatorio = 0.0;
 
+        //Parcela auxiliar para capturar os dados iniciais
         Parcela p0 = new Parcela();
         p0.setNumero(0);
         p0.setPrestacao(prestacao);
@@ -121,15 +127,15 @@ public class Parcela {
         p0.setAmortizacao(amortizacao);
         p0.setSaldoDevedor(saldoDevedor);
         p0.setSomatorio(somatorio);
-        parcelas.add(p0);
+        listaParcelas.add(p0);
 
         //AS PRESTAÇÕES SÃO FIXAS
         prestacao = capital*taxa/(1-Math.pow(1+taxa,(-tempo)));
         for(int i = 1; i <= tempo; i++){
-            Parcela p = new Parcela();
+            Parcela parcela = new Parcela();
             juros = taxa*saldoDevedor;
             amortizacao = prestacao - juros;
-            saldoDevedor = saldoDevedor - amortizacao;
+            saldoDevedor -= amortizacao;
 
             if(saldoDevedor < 0.0) {
                 saldoDevedor *= -1;
@@ -137,16 +143,16 @@ public class Parcela {
 
             somatorio += prestacao;
 
-            p.setNumero(i);
-            p.setPrestacao(prestacao);
-            p.setJuros(juros);
-            p.setAmortizacao(amortizacao);
-            p.setSaldoDevedor(saldoDevedor);
-            p.setSomatorio(somatorio);
+            parcela.setNumero(i);
+            parcela.setPrestacao(prestacao);
+            parcela.setJuros(juros);
+            parcela.setAmortizacao(amortizacao);
+            parcela.setSaldoDevedor(saldoDevedor);
+            parcela.setSomatorio(somatorio);
 
-            parcelas.add(p);
+            listaParcelas.add(parcela);
         }
 
-        return parcelas;
+        return listaParcelas;
     }
 }

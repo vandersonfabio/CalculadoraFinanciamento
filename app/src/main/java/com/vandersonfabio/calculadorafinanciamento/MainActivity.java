@@ -51,6 +51,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         configurarBotoes();
     }
 
+    //Método para configurar todos os botões da tela
     public void configurarBotoes(){
 
         botaoCalcular = findViewById(R.id.btCalcularPrestacoes);
@@ -63,7 +64,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         spinnerTabela.setOnItemSelectedListener(this);
         carregarDadosSpinner();
 
-        //MODIFICAR VALORES EM TEMPO DE EXECUÇÃO
+        //MODIFICAR VALORES DO FINANCIAMENTO EM TEMPO DE EXECUÇÃO
         txtValorFinanciamento.addTextChangedListener(new TextWatcher() {
 
             private String current = "";
@@ -99,7 +100,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             }
         });
 
-        //CLIQUE DO BOTÃO CALCULAR
+        //AÇÃO APÓS CLIQUE DO BOTÃO CALCULAR
         botaoCalcular.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -107,6 +108,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 String errorDescription = "";
                 int countError = 0;
 
+                //Verificação de erros
                 if (txtValorFinanciamento.getText().toString().equals("")) {
                     countError++;
                     errorDescription = getString(R.string.erroFinanciamentoAusente);
@@ -164,6 +166,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
         DecimalFormat df = new DecimalFormat("###,##0.00");
 
+        //Verificação do sistema de amortização + chamada de método correspondente utilizando um operador ternário
         final ArrayList<Parcela> listaParcelas =
                 tipoAmortizacao.equals("SAC") ?
                 parcela.getParcelasSAC(capital, taxa, tempo) :
@@ -172,6 +175,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         //Adaptador para o ListView das parcelas
         ParcelaAdapter adapterParcela = new ParcelaAdapter(getBaseContext(), R.layout.linha_parcela, listaParcelas);
 
+        //GET na última parcela para que busquemos o somatório pago pelo usuário
         Parcela ultima = listaParcelas.get(listaParcelas.size()-1);
 
         //Criando o alerta de listagem de parcelas
@@ -191,12 +195,12 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
                 alertaIndividual.setTitle("Detalhamento da parcela # " + parcelaSelecionada.getNumero());
                 alertaIndividual.setMessage(
-                        "Prestação: R$ " + df.format(parcelaSelecionada.getPrestacao()) +
-                        "\nAmortização: R$ " + df.format(parcelaSelecionada.getAmortizacao()) +
-                        "\nJuros: R$ " + df.format(parcelaSelecionada.getJuros()) +
-                        "\nSaldo Devedor: R$ " + df.format(parcelaSelecionada.getSaldoDevedor()) +
+                        "Prestação: \t\t\t\t\t\t\t\tR$ " + df.format(parcelaSelecionada.getPrestacao()) +
+                        "\nAmortização: \t\t\t\t\t\tR$ " + df.format(parcelaSelecionada.getAmortizacao()) +
+                        "\nJuros: \t\t\t\t\t\t\t\t\t\t\t\tR$ " + df.format(parcelaSelecionada.getJuros()) +
+                        "\nSaldo Devedor: \t\t\t\tR$ " + df.format(parcelaSelecionada.getSaldoDevedor()) +
                         "\n"+
-                        "\nMontante pago: R$ " + df.format(parcelaSelecionada.getSomatorio())
+                        "\nMontante pago: \t\t\t\tR$ " + df.format(parcelaSelecionada.getSomatorio())
                 );
                 alertaIndividual
                         .setPositiveButton("Voltar", null)

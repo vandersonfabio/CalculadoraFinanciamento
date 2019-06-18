@@ -15,8 +15,9 @@
 
     <string name="voltarECorrigir">Voltar e corrigir</string>
     <string name="charMoeda">[R,$.]</string>
-    <string name="devs">Isaac José | Vanderson Fábio</string>
+    <string name="devs">Isaac José | Joaquim Heitor | Vanderson Fábio</string>
     <string name="developed_by">Developed by:</string>
+    <string name="sobre">É muito comum as operações de financiamentos nos dias de hoje, realizadas tanto por pessoas físicas quanto jurídicas. Quando se deseja calcular os valores das prestações, aplicação de juros cobrados, calcular tempo do financiamento, estamos nos referindo à atividade de amortização de dívidas. Os principais sistemas de amortização são Tabela Price e Sistema de Amortização Constante (comumente chamado de Tabela SAC), sendo o primeiro com parcelas constantes e o segundo apresenta a diferenciação de parcelas, pois a cada período o valor é menor. Diante disso, o Software MINHA PRESTAÇÃO foi desenvolvido para simular ambos os sistemas de amortização, além de servir como atividade avaliativa para compor a nota da 3ª Unidade da disciplina CEA0009 - Matemática Financeira.</string>
 
 
 </resources>
